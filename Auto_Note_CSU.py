@@ -7,7 +7,7 @@ import sqlite3
 from  platform import architecture
 from wx.adv import AnimationCtrl
 from selenium import webdriver
-from os import popen
+from os import popen,remove
 import time
 import shutil
 from random import randint
@@ -227,7 +227,7 @@ class UpdateDialog(wx.Dialog):
         self.SetIcon(wx.Icon('res/update.ico'))
         self.VerOK = 1 #适配
         self.Centre()
-        if t1 == t2:
+        if abs(int(t1.split('.')[3])-int(t2.split('.')[3])) <= 2:
             self.btn.SetLabel('版本适配')
             self.VerOK = 1
         else:
@@ -248,9 +248,10 @@ class UpdateDialog(wx.Dialog):
             FrameWorkVer= architecture()[0][:2]
             driverpath = 'res\.wdm\drivers\edgedriver\win'+ FrameWorkVer + '\\' + text1
             savepath = r'res'
+            remove('res\msedgedriver.exe')
             shutil.move(driverpath+'\msedgedriver.exe',savepath)
             shutil.rmtree('res\.wdm')
-            shutil.rmtree('res\Driver_Notes')
+            #shutil.rmtree('res\Driver_Notes')
             self.localvertext.SetLabel(GetEdgeVer())
             self.driververtext.SetLabel(GetLocalDriverVer())
             self.btn.SetLabel("版本更新完毕")
@@ -416,7 +417,7 @@ class MainWin(wx.Frame):
         tic = GetLocalDriverVer()
         self.WarnMes.SetLabel('驱动版本检查中')
         time.sleep(1)
-        if tok!=tic:
+        if abs(int(tok.split('.')[3])-int(tic.split('.')[3]))>2:
             self.WarnMes.SetLabel('驱动不适配，请手动更新驱动\n[设置-驱动更新]')
             return
         else:
