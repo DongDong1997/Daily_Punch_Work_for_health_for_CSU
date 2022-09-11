@@ -5,6 +5,7 @@
 <strong> Specific function </strong>
 - 设置登陆账号和密码.  
 Set the login account and password.
+![ID]('fig\ID windom.png')
 - 设定打卡时间.   
 Set a time to punch in.
 - 展示具体打卡流程.   
