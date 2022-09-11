@@ -1,4 +1,4 @@
-# Daily_Punch_Work_for_heath_for_CSU
+# Daily_Punch_Work_for_health_for_CSU
 > 一款专为中南学生日常健康自动打卡的软件   
 > Application for making it auto to daily punching work for heath for CSU 
 ## 具体功能  
